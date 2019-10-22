@@ -2,7 +2,7 @@
 - name: Create directory for certificates
   file:
     state: directory
-    path: /etc/logstas/certs
+    path: /etc/logstash/certs
     owner: root
     group: logstash
     mode: 0750
@@ -10,4 +10,4 @@
   fetch: src=/usr/share/elasticsearch/{{ ansible_hostname }}.p12 dest=/tmp/ flat=yes
   delegate_to: "{{ elasticsearch_ca }}"
 - name: Copy the certificate to actual node
-  copy: src=/tmp/{{ ansible_hostname }}.p12 dest=/etc/elasticsearch/certs
+  copy: src=/tmp/{{ ansible_hostname }}.p12 dest=/etc/logstash/certs
