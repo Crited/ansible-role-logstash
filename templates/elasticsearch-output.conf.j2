@@ -1,6 +1,11 @@
 output {
   elasticsearch {
     hosts => [ "{{ logstash_elasticsearch }}"]
+{% if elasticsearch_http_security | bool %}
+    ssl => true
+    ssl_certificate_verification => false
+    truststore => /etc/logstash/certs/{{ ansible_hostname }}.p12
+{% endif %}
   }
 }
 

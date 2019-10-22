@@ -17,6 +17,8 @@
   notify:
     - Restart Logstash
   when: logstash_manage_yaml | bool
+- import_tasks: security.yml
+  when: elasticsearch_http_security | bool
 - name: Create Logstash pipeline directories
   file:
     path: "/etc/logstash/conf.d/{{ logstash_pipelines[item].name }}"
